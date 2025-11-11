@@ -65,7 +65,7 @@ The system uses **AWS Serverless Architecture** to optimize costs:
 
 Here is the cloud architecture diagram of the system:
 
-![HR System Architecture](/images/2-Proposal/proposalaws.jpg)
+![HR System Architecture](/images/2-Proposal/proposalaws1.jpg)
 
 ### AWS Services Used
 

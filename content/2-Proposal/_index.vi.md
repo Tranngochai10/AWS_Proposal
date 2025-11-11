@@ -66,7 +66,7 @@ Hệ thống sử dụng **AWS Serverless Architecture** để tối ưu chi ph�
 
 Đây là sơ đồ kiến trúc đám mây của hệ thống:
 
-![HR System Architecture](/images/2-Proposal/proposalaws.jpg)
+![HR System Architecture](/images/2-Proposal/proposalaws1.jpg)
 
 ### Dịch vụ AWS sử dụng
 
