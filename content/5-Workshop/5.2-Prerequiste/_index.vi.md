@@ -1,13 +1,25 @@
 ---
-title : "Các bước chuẩn bị"
-date :  2025-09-09
+title : "Yêu cầu và Thiết lập"
+date :  2025-09-09 
 weight : 2
 chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Gắn IAM permission policy sau vào tài khoản aws user của bạn để triển khai và dọn dẹp tài nguyên trong workshop này.
+## Yêu cầu
+
+### Quyền truy cập AWS Services
+
+Để hoàn thành workshop này, bạn cần quyền truy cập các dịch vụ AWS sau:
+- AWS Lambda
+- Amazon API Gateway
+- Amazon DynamoDB
+- AWS IAM
+- Amazon CloudWatch Logs
+
+### Quyền IAM
+
+Tài khoản AWS của bạn cần các quyền IAM sau:
 ```
 {
     "Version": "2012-10-17",
@@ -207,36 +219,48 @@ Gắn IAM permission policy sau vào tài khoản aws user của bạn để tri
                 "ssm:ListAssociations",
                 "ssm:ResumeSession",
                 "ssm:StartSession",
-                "ssm:TerminateSession"
             ],
             "Resource": "*"
         }
     ]
 }
-
 ```
 
-#### Khởi tạo tài nguyên bằng CloudFormation
+### Yêu cầu Phần mềm
 
-Trong lab này, chúng ta sẽ dùng N.Virginia region (us-east-1).
+- **Tài khoản AWS** với quyền phù hợp
+- **Truy cập AWS Console** hoặc **AWS CLI** đã được cấu hình
+- Kiến thức cơ bản về **Python 3.x**
+- Text editor hoặc IDE (VS Code, PyCharm, v.v.)
 
-Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Để nguyên các lựa chọn mặc định.
+### AWS Region
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
+Chúng ta sẽ sử dụng **us-east-1 (N. Virginia)** cho workshop này. Bạn có thể chọn bất kỳ region nào, nhưng đảm bảo tất cả tài nguyên được tạo trong cùng một region.
 
-+ Lựa chọn 2 mục acknowledgement 
-+ Chọn Create stack
+## Các bước Thiết lập
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
+### Bước 1: Xác minh Quyền truy cập AWS
 
-Quá trình triển khai CloudFormation cần khoảng 15 phút để hoàn thành.
+1. Đăng nhập vào AWS Management Console
+2. Điều hướng đến dịch vụ AWS Lambda
+3. Đảm bảo bạn có thể thấy Lambda dashboard
 
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+### Bước 2: Chọn Region
 
-+ 2 VPCs đã được tạo
+1. Chọn AWS region ưa thích của bạn từ góc trên bên phải
+2. Nhớ region này - tất cả tài nguyên sẽ được tạo ở đây
 
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+### Bước 3: Chuẩn bị Môi trường
 
-+ 3 EC2s đã được tạo
+- Có sẵn text editor để viết code Lambda function
+- Giữ AWS Console mở trong trình duyệt
+- Tùy chọn: Có AWS CLI đã được cấu hình nếu bạn thích công cụ dòng lệnh
 
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+## Chi phí Ước tính
+
+Workshop này sử dụng các dịch vụ đủ điều kiện AWS Free Tier:
+- **Lambda**: 1M requests miễn phí mỗi tháng
+- **API Gateway**: 1M API calls miễn phí mỗi tháng cho REST APIs
+- **DynamoDB**: 25GB storage, 25 read/write capacity units
+
+**Lưu ý**: Nếu bạn vượt quá giới hạn free tier, bạn có thể phải trả phí tối thiểu. Luôn dọn dẹp tài nguyên sau khi hoàn thành workshop.

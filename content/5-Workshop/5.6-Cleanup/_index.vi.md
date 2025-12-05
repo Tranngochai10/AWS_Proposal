@@ -1,37 +1,114 @@
 ---
-title : "Dọn dẹp tài nguyên"
+title : "Kiểm thử và Dọn dẹp"
 date : 2025-09-09
 weight : 6
 chapter : false
 pre : " <b> 5.6. </b> "
 ---
 
-#### Dọn dẹp tài nguyên
+## Kiểm thử và Dọn dẹp
 
-Xin chúc mừng bạn đã hoàn thành xong lab này!
-Trong lab này, bạn đã học về các mô hình kiến trúc để truy cập Amazon S3 mà không sử dụng Public Internet.
+### Kiểm thử API của bạn
 
-+ Bằng cách tạo Gateway endpoint, bạn đã cho phép giao tiếp trực tiếp giữa các tài nguyên EC2 và Amazon S3, mà không đi qua Internet Gateway.
-Bằng cách tạo Interface endpoint, bạn đã mở rộng kết nối S3 đến các tài nguyên chạy trên trung tâm dữ liệu trên chỗ của bạn thông qua AWS Site-to-Site VPN hoặc Direct Connect.
+Trước khi dọn dẹp, đảm bảo kiểm thử tất cả các endpoints:
 
-#### Dọn dẹp
-1. Điều hướng đến Hosted Zones trên phía trái của bảng điều khiển Route 53. Nhấp vào tên của  s3.us-east-1.amazonaws.com zone. Nhấp vào Delete và xác nhận việc xóa bằng cách nhập từ khóa "delete".
+1. **Create Task** - POST request đến `/tasks`
+2. **List Tasks** - GET request đến `/tasks`
+3. **Get Task** - GET request đến `/tasks/{id}`
+4. **Update Task** - PUT request đến `/tasks/{id}`
+5. **Delete Task** - DELETE request đến `/tasks/{id}`
 
-![hosted zone](/images/5-Workshop/5.6-Cleanup/delete-zone.png)
+### Các bước Dọn dẹp
 
-2. Disassociate Route 53 Resolver Rule - myS3Rule from "VPC Onprem" and Delete it. 
+Để tránh phát sinh chi phí, hãy xóa tất cả các tài nguyên đã tạo trong workshop này.
 
-![hosted zone](/images/5-Workshop/5.6-Cleanup/vpc.png)
+#### Bước 1: Xóa API Gateway
 
-4.Mở console của CloudFormation và xóa hai stack CloudFormation mà bạn đã tạo cho bài thực hành này:
-+ PLOnpremSetup
-+ PLCloudSetup
+1. Vào **API Gateway** console
+2. Chọn API của bạn: `TaskManagementAPI`
+3. Nhấp **Actions** → **Delete API**
+4. Nhập tên API để xác nhận
+5. Nhấp **Delete**
 
-![delete stack](/images/5-Workshop/5.6-Cleanup/delete-stack.png)
+#### Bước 2: Xóa Lambda Functions
 
-5. Xóa các S3 bucket
+1. Vào **Lambda** console
+2. Xóa từng function:
+   - `createTask`
+   - `listTasks`
+   - `getTask`
+   - `updateTask`
+   - `deleteTask`
 
-+ Mở bảng điều khiển S3
-+ Chọn bucket chúng ta đã tạo cho lab, nhấp chuột và xác nhận là empty. Nhấp Delete và xác nhận delete.
-+ 
-![delete s3](/images/5-Workshop/5.6-Cleanup/delete-s3.png)
+Với mỗi function:
+- Chọn function
+- Nhấp **Delete**
+- Nhập "delete" để xác nhận
+- Nhấp **Delete**
+
+#### Bước 3: Xóa DynamoDB Table
+
+1. Vào **DynamoDB** console
+2. Chọn table: `tasks`
+3. Nhấp **Delete**
+4. Nhập "delete" để xác nhận
+5. Nhấp **Delete**
+
+#### Bước 4: Xóa IAM Role
+
+1. Vào **IAM** console
+2. Nhấp **Roles**
+3. Tìm role: `lambda-dynamodb-role`
+4. Nhấp vào role
+5. Nhấp **Delete**
+6. Nhập tên role để xác nhận
+7. Nhấp **Delete**
+
+#### Bước 5: Xóa CloudWatch Log Groups (Tùy chọn)
+
+1. Vào **CloudWatch** console
+2. Nhấp **Log groups**
+3. Xóa log groups cho mỗi Lambda function:
+   - `/aws/lambda/createTask`
+   - `/aws/lambda/listTasks`
+   - `/aws/lambda/getTask`
+   - `/aws/lambda/updateTask`
+   - `/aws/lambda/deleteTask`
+
+### Xác minh
+
+Sau khi dọn dẹp, xác minh rằng:
+- ✅ Không có API Gateway APIs nào tồn tại
+- ✅ Không có Lambda functions nào tồn tại
+- ✅ Không có DynamoDB tables nào tồn tại
+- ✅ IAM role đã được xóa
+
+### Tóm tắt
+
+Chúc mừng! Bạn đã thành công:
+
+1. ✅ Tạo DynamoDB table để lưu trữ dữ liệu
+2. ✅ Tạo Lambda functions cho business logic
+3. ✅ Cấu hình API Gateway REST API
+4. ✅ Tích hợp Lambda với API Gateway
+5. ✅ Xây dựng một REST API serverless hoàn chỉnh
+
+### Những gì bạn đã học
+
+- Cách tạo và cấu hình DynamoDB tables
+- Cách viết Lambda functions bằng Python
+- Cách tạo REST APIs với API Gateway
+- Cách tích hợp Lambda với API Gateway
+- Cách xử lý HTTP requests và responses
+- Các mẫu kiến trúc serverless
+
+### Bước tiếp theo
+
+- Thêm xác thực sử dụng AWS Cognito
+- Thêm API rate limiting
+- Triển khai input validation
+- Thêm error handling và logging
+- Deploy lên production stage
+- Thiết lập monitoring và alerts
+
+Cảm ơn bạn đã hoàn thành workshop này!

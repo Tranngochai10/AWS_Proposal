@@ -6,121 +6,91 @@ chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Summary Report: “VietNam Cloud Day 2025 – Ho Chi Minh City Connect Edition for Builders”
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Share insights on the latest trends in cloud computing and digital transformation  
+- Connect cloud professionals, developers, and business leaders in Vietnam  
+- Showcase real-world use cases of AWS Cloud services for startups and enterprises  
+- Provide technical sessions for builders to explore cloud-native development and AI integration  
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **AWS Vietnam Solution Architects** – Technical experts presenting modernization strategies  
+- **Industry Partners & Builders** – Sharing real-world cloud migration success stories  
+- **Guest Speakers** – Local innovators and startup founders using AWS technologies  
+
+---
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### 1. Cloud Transformation in Vietnam  
+- Overview of how cloud adoption is accelerating across industries  
+- Shared success stories from companies modernizing with AWS  
+- Emphasis on cloud security, scalability, and cost optimization  
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+#### 2. Building with AWS  
+- Hands-on sessions on deploying serverless applications with **AWS Lambda** and **API Gateway**  
+- Introduction to **Amazon S3**, **EC2**, and **CloudFront** for web applications  
+- Demonstration of infrastructure automation using **AWS CloudFormation**  
 
-#### Transitioning to modern application architecture – Microservices
+#### 3. Generative AI and Modern Development  
+- Discussion on how **AI and machine learning** are integrated into development workflows  
+- Use cases with **Amazon Bedrock** and **CodeWhisperer** for AI-assisted development  
+- Highlighted potential of GenAI for accelerating innovation  
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+#### 4. Networking and Collaboration  
+- Opportunities to connect with AWS partners, developers, and solution architects  
+- Experience-sharing among cloud builders and technology enthusiasts  
+- Discussion on career opportunities and community initiatives  
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
-
-#### Domain-Driven Design (DDD)
-
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
-
-#### Event-Driven Architecture
-
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
-
-#### Compute Evolution
-
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
-
-#### Amazon Q Developer
-
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+---
 
 ### Key Takeaways
 
-#### Design Mindset
+#### Technical Knowledge  
+- Improved understanding of AWS core services and cloud architecture best practices  
+- Learned how to design scalable, secure, and cost-efficient systems using AWS tools  
+- Understood the benefits of **serverless**, **containerized**, and **event-driven** architectures  
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+#### Professional Development  
+- Enhanced communication and networking skills through discussions with experts  
+- Gained awareness of the future direction of cloud and AI technologies  
+- Learned from real-world implementation challenges and solutions  
 
-#### Technical Architecture
-
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
-
-#### Modernization Strategy
-
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+---
 
 ### Applying to Work
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- **Apply cloud principles** to current or future projects (e.g., modular, event-driven design)  
+- Use **AWS Free Tier** for self-learning and experimentation with services like Lambda and S3  
+- Share insights with team members about **security**, **scalability**, and **cost optimization** in the cloud  
+- Join local **AWS Builder Community** to continue learning and connecting with professionals  
+
+---
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Attending **VietNam Cloud Day 2025 – Ho Chi Minh City Connect Edition for Builders** was an inspiring and educational experience.  
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+#### Learning and Inspiration  
+- The sessions provided deep insight into how AWS is shaping the future of technology in Vietnam.  
+- I learned directly from AWS engineers and business experts about modern architecture and AI trends.  
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+#### Hands-on Demonstrations  
+- Experienced practical demos on deploying serverless applications and automating infrastructure.  
+- Explored the use of GenAI tools to streamline the software development process.  
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+#### Networking and Community  
+- Engaged in meaningful conversations with developers, architects, and startup founders.  
+- Gained useful advice about career growth in the cloud and AI ecosystem.  
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+#### Lessons Learned  
+- Cloud adoption requires both technical readiness and mindset change within teams.  
+- Collaboration between business and technology teams is essential for successful transformation.  
+- Continuous learning and community participation are key to keeping up with cloud innovation.  
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+#### Event photos  
+![VietNam Cloud Day 2025](/images/4-Event/VietNamCloudDay.jpg)

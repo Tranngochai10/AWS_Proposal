@@ -6,42 +6,70 @@ chapter: false
 pre: " <b> 7. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
-
-> Here, you can freely share your personal opinions about your experience participating in the First Cloud Journey program. This will help the FCJ team improve any shortcomings based on the following aspects:
+# Sharing and Feedback
 
 ### Overall Evaluation
 
 **1. Working Environment**  
-The working environment is very friendly and open. FCJ members are always willing to help whenever I encounter difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus better. However, I think it would be nice to have more social gatherings or team bonding activities to strengthen relationships.
+The working environment at **First Cloud Journey (FCJ)** is very dynamic and inspiring.  
+The office has a professional yet comfortable atmosphere that encourages focus and creativity.  
+Team members are approachable and supportive, which makes collaboration enjoyable and effective.  
+Occasionally, I think organizing more **team-building sessions or internal knowledge-sharing meetups** would make the working environment even more engaging.
 
-**2. Support from Mentor / Team Admin**  
-The mentor provides very detailed guidance, explains clearly when I don’t understand, and always encourages me to ask questions. The admin team supports administrative tasks, provides necessary documents, and creates favorable conditions for me to work effectively. I especially appreciate that the mentor allows me to try and solve problems myself instead of just giving the answer.
+---
+
+**2. Support from Mentor / Team Lead**  
+My mentor provided **clear guidance and constructive feedback** throughout the internship.  
+Instead of giving direct answers, they encouraged me to **analyze and solve problems independently**, which helped me build stronger problem-solving skills.  
+The mentor also gave me opportunities to take part in real project discussions, allowing me to better understand professional workflows and decision-making processes.
+
+---
 
 **3. Relevance of Work to Academic Major**  
-The tasks I was assigned align well with the knowledge I learned at university, while also introducing me to new areas I had never encountered before. This allowed me to both strengthen my foundational knowledge and gain practical skills.
+The tasks assigned to me were highly relevant to my studies in **Information Technology**.  
+Working as a **Frontend Developer** in a web-based employee management project helped me apply the knowledge I learned in web programming, databases, and system design.  
+I also gained exposure to **AWS Cloud services**, which extended my understanding beyond the classroom.
+
+---
 
 **4. Learning & Skill Development Opportunities**  
-During the internship, I learned many new skills such as using project management tools, teamwork skills, and professional communication in a corporate environment. The mentor also shared valuable real-world experiences that helped me better plan my career path.
+During the internship, I enhanced both **technical and soft skills**.  
+Technically, I improved in using **React, Tailwind CSS, and Git**, while learning to integrate APIs effectively.  
+In addition, I learned professional skills such as **time management, communication in a team environment, and agile workflow practices**.  
+Through weekly discussions and code reviews, I received valuable insights from experienced engineers that shaped my professional growth.
+
+---
 
 **5. Company Culture & Team Spirit**  
-The company culture is very positive: everyone respects each other, works seriously but still keeps things enjoyable. When there are urgent projects, everyone works together and supports one another regardless of their position. This made me feel like a real part of the team, even as an intern.
+The culture at FCJ emphasizes **collaboration, learning, and respect**.  
+Everyone, from senior engineers to interns, works together and shares knowledge openly.  
+Even when the team faced tight deadlines, the members remained supportive and solution-oriented.  
+This culture helped me feel comfortable contributing ideas and motivated me to keep improving every day.
+
+---
 
 **6. Internship Policies / Benefits**  
-The company provides an internship allowance and offers flexible working hours when needed. In addition, having the opportunity to join internal training sessions is a big plus.
+The internship program offers flexible working hours and access to **internal technical training sessions**, which were extremely helpful.  
+The **allowance policy** was fair, and communication with the HR/admin team was smooth.  
+I especially appreciated how FCJ gave interns opportunities to **work on real client-oriented projects**, which made the experience more meaningful.
 
 ---
 
 ### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- What do you think the company **should improve** for future interns?  
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
+
+- **What was the most satisfying part of your internship?**  
+  Gaining real-world experience in frontend development while being trusted to contribute directly to an active project.  
+
+- **What could the company improve for future interns?**  
+  Provide a short onboarding workshop at the beginning of the internship to help new interns understand tools, repositories, and deployment workflows faster.  
+
+- **Would you recommend this company to other students? Why?**  
+  Yes, definitely. The internship program at FCJ offers hands-on learning, real projects, and strong mentorship that genuinely help students transition into professional developers.
 
 ---
 
 ### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- Would you like to continue this program in the future?  
-- Any other comments (free sharing):
+
+- FCJ could consider organizing **monthly mini hackathons or tech talks** to encourage creative ideas among interns and employees.  
+- I would be happy to continue joining future programs or **collaborate again** in upcoming cloud or web development projects.  
+- Overall, this internship was a **valuable and memorable journey** that helped me bridge the gap between theory and practice while growing both technically and personally.

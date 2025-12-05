@@ -6,34 +6,51 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+During my internship at **First Cloud Journey** from **August 12, 2025** to **November 12, 2025**, I had the opportunity to apply the knowledge and skills learned at school to a real-world software development environment.  
 
-During my internship at **[Company/Organization Name]** from **[start date]** to **[end date]**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
-I participated in **[briefly describe the main project or task]**, through which I improved my skills in **[list skills: programming, analysis, reporting, communication, etc.]**.  
+During this internship, I participated in the **development of a web-based employee management system** for a technology company.  
+This system was designed to help organizations manage employee data, attendance, and departmental information efficiently on the cloud.  
+My position in the project team was **Frontend Developer**, where I focused on building the user interface, integrating APIs, and ensuring responsive design and usability.
 
-In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
+I consistently strived to complete assigned tasks on time, adhered to the company’s workflow standards, and collaborated closely with my teammates to deliver high-quality features and improve overall system performance.
 
-To objectively reflect on my internship period, I would like to evaluate myself based on the following criteria:
+Below is my self-assessment based on key criteria:
 
 | No. | Criteria                            | Description                                                                                      | Good | Fair | Average |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
-| 1   | **Professional knowledge & skills** | Understanding of the field, applying knowledge in practice, proficiency with tools, work quality | ✅    | ☐    | ☐       |
-| 2   | **Ability to learn**                | Ability to absorb new knowledge and learn quickly                                                | ☐    | ✅    | ☐       |
-| 3   | **Proactiveness**                   | Taking initiative, seeking out tasks without waiting for instructions                            | ✅    | ☐    | ☐       |
-| 4   | **Sense of responsibility**         | Completing tasks on time and ensuring quality                                                    | ✅    | ☐    | ☐       |
-| 5   | **Discipline**                      | Adhering to schedules, rules, and work processes                                                 | ☐    | ☐    | ✅       |
-| 6   | **Progressive mindset**             | Willingness to receive feedback and improve oneself                                              | ☐    | ✅    | ☐       |
-| 7   | **Communication**                   | Presenting ideas and reporting work clearly                                                      | ☐    | ✅    | ☐       |
-| 8   | **Teamwork**                        | Working effectively with colleagues and participating in teams                                   | ✅    | ☐    | ☐       |
-| 9   | **Professional conduct**            | Respecting colleagues, partners, and the work environment                                        | ✅    | ☐    | ☐       |
-| 10  | **Problem-solving skills**          | Identifying problems, proposing solutions, and showing creativity                                | ☐    | ✅    | ☐       |
-| 11  | **Contribution to project/team**    | Work effectiveness, innovative ideas, recognition from the team                                  | ✅    | ☐    | ☐       |
-| 12  | **Overall**                         | General evaluation of the entire internship period                                               | ✅    | ☐    | ☐       |
+| 1   | **Professional knowledge & skills** | Applying frontend knowledge, using frameworks effectively, delivering UI/UX components           | ☐    | ✅    | ☐       |
+| 2   | **Ability to learn**                | Ability to learn new frontend tools, frameworks, and technologies quickly                        | ☐    | ✅    | ☐       |
+| 3   | **Proactiveness**                   | Taking initiative to improve the interface and fix minor bugs without waiting for instructions   | ☐    | ✅    | ☐       |
+| 4   | **Sense of responsibility**         | Completing assigned UI modules and tasks on time with good quality                               | ☐    | ✅    | ☐       |
+| 5   | **Discipline**                      | Following company schedules, coding standards, and version control guidelines                    | ☐    | ✅    | ☐       |
+| 6   | **Progressive mindset**             | Willingness to receive feedback and continuously enhance frontend performance                    | ☐    | ✅    | ☐       |
+| 7   | **Communication**                   | Discussing requirements and updates clearly with the backend and QA teams                        | ☐    | ✅    | ☐       |
+| 8   | **Teamwork**                        | Collaborating effectively with developers and designers in the project                           | ☐    | ✅    | ☐       |
+| 9   | **Professional conduct**            | Maintaining respect, cooperation, and a positive attitude in the workplace                       | ☐    | ✅    | ☐       |
+| 10  | **Problem-solving skills**          | Identifying UI/UX issues, debugging, and optimizing components                                   | ☐    | ✅    | ☐       |
+| 11  | **Contribution to project/team**    | Supporting team goals by improving interface quality and suggesting usability enhancements        | ☐    | ✅    | ☐       |
+| 12  | **Overall**                         | General performance and development throughout the internship period                             | ☐    | ✅    | ☐       |
+
+---
+
+### Strengths
+- Acquired hands-on experience in **frontend development** using React, Tailwind CSS, and integration with RESTful APIs.  
+- Developed a deeper understanding of **UI/UX principles**, accessibility, and responsive design.  
+- Strengthened teamwork, communication, and adaptability through active collaboration with backend developers.  
+- Gained practical experience in **cloud-based project environments (AWS)** and using tools like **GitHub and CodePipeline**.  
+
+---
 
 ### Needs Improvement
+- **Enhance problem-solving and debugging skills:** Continue practicing advanced debugging techniques and performance optimization.  
+- **Improve communication clarity:** Deliver more concise and structured updates during daily stand-up meetings.  
+- **Strengthen coding discipline:** Follow project conventions more consistently, especially in documentation and version control.  
+- **Explore deeper frontend topics:** Learn more about advanced state management, testing, and deployment workflows.  
 
-* Strengthen discipline and strictly comply with the rules and regulations of the company or any organization  
-* Improve problem-solving thinking  
-* Enhance communication skills in both daily interactions and professional contexts, including handling situations effectively
+---
+
+### Overall Reflection
+
+Overall, I evaluate my internship performance at a **Fair** level.  
+Through this internship, I gained valuable real-world experience as a frontend developer, improved my technical and teamwork skills, and developed a clearer understanding of how professional cloud-based systems are built and maintained.  
+Although there is still room for improvement in communication and code optimization, I believe this internship has laid a strong foundation for my future career in web development.

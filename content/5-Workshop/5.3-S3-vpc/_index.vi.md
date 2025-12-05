@@ -1,18 +1,46 @@
 ---
-title : "Truy cập S3 từ VPC"
-date :  2025-09-09
+title : "Tạo DynamoDB Table"
+date : 2025-09-09
 weight : 3
 chapter : false
 pre : " <b> 5.3. </b> "
 ---
 
-#### Sử dụng Gateway endpoint
+## Tạo DynamoDB Table
 
-Trong phần này, bạn sẽ tạo một Gateway endpoint để truy cập Amazon S3 từ một EC2 instance. Gateway endpoint sẽ cho phép tải một object lên S3 bucket mà không cần sử dụng Internet Công cộng. Để tạo endpoint, bạn phải chỉ định VPC mà bạn muốn tạo endpoint và dịch vụ (trong trường hợp này là S3) mà bạn muốn thiết lập kết nối.
+DynamoDB là cơ sở dữ liệu NoSQL sẽ lưu trữ các task của chúng ta. Hãy tạo một bảng để lưu trữ dữ liệu task.
 
-![overview](/images/5-Workshop/5.3-S3-vpc/diagram2.png)
+### Bước 1: Điều hướng đến DynamoDB
 
-#### Nội dung
+1. Vào AWS Console
+2. Tìm kiếm "DynamoDB" trong thanh tìm kiếm dịch vụ
+3. Nhấp vào **DynamoDB**
 
-- [Tạo gateway endpoint](3.1-create-gwe/)
-- [Test gateway endpoint](3.2-test-gwe/)
+### Bước 2: Tạo Table
+
+1. Nhấp nút **Create table**
+2. Cấu hình bảng:
+   - **Table name**: `tasks`
+   - **Partition key**: `id` (type: String)
+   - **Table settings**: Sử dụng cài đặt mặc định
+   - **Capacity mode**: On-demand (khuyến nghị cho workshop này)
+
+### Bước 3: Tạo Table
+
+1. Cuộn xuống và nhấp **Create table**
+2. Đợi bảng được tạo (thường mất vài giây)
+
+### Cấu trúc Table
+
+Bảng DynamoDB của chúng ta sẽ có cấu trúc sau:
+
+- **id** (String) - Primary key - Mã định danh duy nhất cho mỗi task
+- **title** (String) - Tiêu đề task
+- **description** (String) - Mô tả task
+- **status** (String) - Trạng thái task (ví dụ: "pending", "completed")
+- **createdAt** (String) - Timestamp khi task được tạo
+- **updatedAt** (String) - Timestamp khi task được cập nhật lần cuối
+
+### Bước tiếp theo
+
+Sau khi bảng được tạo, chúng ta sẽ tiếp tục tạo các Lambda functions sẽ tương tác với bảng này.
