@@ -6,122 +6,40 @@ chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Triển khai custom domain names cho private endpoints với Amazon API Gateway
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+bởi Chris McPeek | vào ngày 21 THÁNG 11 2024 | trong Amazon API Gateway, Amazon EC2, Amazon Elastic Container Service, Amazon Elastic Kubernetes Service, AWS Lambda, Resource Access Manager (RAM), Serverless | Permalink | Share
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Bài viết này được viết bởi Heeki Park, Principal Solutions Architect  
+1/23/25: Bài viết này đã được cập nhật để sửa các AWS CloudFormation templates.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Amazon API Gateway đang giới thiệu hỗ trợ custom domain name cho private REST API endpoints. Khách hàng chọn private REST API endpoints khi họ muốn các endpoints chỉ có thể được gọi từ bên trong Amazon VPC của họ. Custom domain names là các URL đơn giản và trực quan hơn mà bạn có thể sử dụng với ứng dụng của mình và trước đây chỉ được hỗ trợ với public REST API endpoints. Giờ đây bạn có thể sử dụng custom domain names để ánh xạ tới private REST APIs và chia sẻ các custom domain names đó giữa các accounts bằng cách sử dụng AWS Resource Access Manager (AWS RAM).
 
----
+## Tổng quan về kết nối API Gateway
 
-## Hướng dẫn kiến trúc
+Khi xem xét kết nối mạng với API Gateway, có hai khía cạnh quan trọng cần lưu ý: integration type và connectivity type. Sơ đồ sau đây cho thấy các ví dụ về những cân nhắc đó.
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Figure 1: Overall architecture
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+Khía cạnh đầu tiên là sự phân biệt giữa frontend integrations và backend integrations. Frontend integrations là cách các API clients như thiết bị di động, trình duyệt web, hoặc ứng dụng client kết nối với API endpoint. Backend integrations là các API services mà API Gateway endpoint của bạn proxy các requests tới, như các ứng dụng chạy trên Amazon Elastic Compute Cloud (EC2) instances, Amazon Elastic Kubernetes Service (EKS) hoặc Amazon Elastic Container Service (ECS) containers, hoặc dưới dạng AWS Lambda functions. Khía cạnh thứ hai là liệu kết nối đó có thông qua public internet hay thông qua private VPC của bạn.
 
-**Kiến trúc giải pháp bây giờ như sau:**
+## Gọi private REST API endpoints
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Để gửi requests tới một private REST API endpoint, clients phải hoạt động trong một VPC được cấu hình với một VPC endpoint. Khi VPC endpoint được cấu hình, một client có three different options trong VPC để kết nối với API endpoint, tùy thuộc vào cách VPC và VPC endpoint được cấu hình.
 
----
+Nếu VPC endpoint có private DNS được bật, client có thể gửi requests tới standard endpoint URL: https://{api-id}.execute-api.{region}.amazonaws.com/{stage}. Các requests này sẽ resolve tới VPC endpoint, sau đó được route tới API Gateway endpoint thích hợp.
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+Hình 2: VPC endpoint được cấu hình với private DNS names được bật
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+Ngoài ra, nếu VPC endpoint có private DNS bị tắt, client có thể gửi requests tới VPC endpoint URL: https://{vpce-id}.execute-api.{region}.amazonaws.com/{stage}. Một trong các headers sau cũng cần được gửi kèm với request đó.  
+Host: {api-id}.execute-api.us-east-1.amazonaws.com  
+x-apigw-api-id: {api-id}
 
----
+Cuối cùng, nếu VPC endpoint có private DNS bị tắt và private REST API endpoint được liên kết với VPC endpoint, client có thể gửi requests tới URL sau: https://{api-id}-{vpce-id}.execute-api.{region}.amazonaws.com/{stage}. Để liên kết một VPC endpoint với một private API, property sau cấu hình liên kết đó.
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
-
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
-
----
-
-## The pub/sub hub
-
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
-
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
-
----
-
-## Core microservice
-
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
-
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
-
----
-
-## Front door microservice
-
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
-
----
-
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
 ```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+     EndpointConfiguration:
+        Type: PRIVATE
+        VPCEndpointIds:
+          - !Ref vpcEndpointId
+```

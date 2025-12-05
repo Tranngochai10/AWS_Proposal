@@ -5,53 +5,66 @@ weight: 1
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
-
 ### Week 4 Objectives:
-
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Master Amazon Simple Storage Service (S3) and its ecosystem
+- Understand object storage concepts, storage classes, lifecycle management, security, and performance optimization
+- Explore the AWS Snow Family and hybrid storage solutions
+- Learn disaster recovery concepts (RTO/RPO) and backup strategies
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task                                                                                                                                                                                                                   | Start Date   | Completion Date | Reference Material                        |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1–2 | Deep dive into Amazon S3: architecture, durability, availability, storage classes, lifecycle policies, versioning, static website hosting, CORS, access control (ACL, Bucket Policy, IAM), Access Points, endpoints | 08/18–08/19  | 08/19/2025      | https://cloudjourney.awsstudygroup.com/   |
+| 3   | S3 performance optimization, multipart upload, prefix design, event notifications, replication (CRR/SRR)                                                                                                              | 08/20/2025   | 08/20/2025      |                                           |
+| 4   | Amazon S3 Glacier (Instant Retrieval, Flexible Retrieval, Deep Archive), retrieval options (Expedited, Standard, Bulk)                                                                                                  | 08/21/2025   | 08/21/2025      |                                           |
+| 5   | AWS Snow Family (Snowball, Snowball Edge, Snowmobile) and AWS Storage Gateway (File, Volume, Tape)                                                                                                                      | 08/22/2025   | 08/22/2025      |                                           |
+| 6   | Disaster recovery concepts (RTO, RPO), 4 DR strategies on AWS, AWS Backup service                                                                                                                                      | 08/23/2025   | 08/23/2025      |                                           |
 
 ### Week 4 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+Successfully completed all Week 4 objectives with the following key learnings:
 
-* Successfully created and configured an AWS Free Tier account.
+- Mastered **Amazon S3** fundamentals:
+  - Object storage (not block/file), write-once-read-many (WORM) model, unlimited total capacity, max 5 TB per object
+  - Designed for 99.999999999% (11×9s) durability and 99.99% availability
+  - Data automatically replicated across minimum 3 Availability Zones in a region
+  - Supports multipart upload, event notifications, static website hosting, and CORS configuration
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+- Understood **S3 Storage Classes** and cost optimization:
+  - S3 Standard, Standard-IA, One Zone-IA, Intelligent-Tiering, Glacier Instant Retrieval, Glacier Flexible Retrieval, Glacier Deep Archive
+  - Lifecycle policies to automatically transition or expire objects
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+- Security & access control:
+  - S3 Bucket Policies, IAM Policies, S3 Access Control Lists (legacy), S3 Access Points
+  - Block Public Access, VPC Endpoints for private connectivity
 
-* Used AWS CLI to perform basic operations such as:
+- Advanced features:
+  - Versioning (protects against accidental deletion/overwrites and ransomware)
+  - Cross-Region Replication (CRR) & Same-Region Replication (SRR)
+  - S3 performance optimization using random prefixes to distribute objects across partitions
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+- Deep understanding of **Amazon S3 Glacier**:
+  - Low-cost archival storage with three retrieval options:
+    - Expedited (1–5 min)
+    - Standard (3–5 hours)
+    - Bulk (5–12 hours)
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Learned **AWS Snow Family** for large-scale data migration:
+  - Snowball (80 TB), Snowball Edge (100 TB + compute), Snowmobile (up to 100 PB per truck)
+
+- Mastered **AWS Storage Gateway** – hybrid storage:
+  - File Gateway → S3 (NFS/SMB)
+  - Volume Gateway → S3 (iSCSI, cached or stored mode, snapshot to EBS)
+  - Tape Gateway → Virtual Tape Library (S3/Glacier)
+
+- Disaster Recovery concepts:
+  - RTO (Recovery Time Objective) – maximum acceptable downtime
+  - RPO (Recovery Point Objective) – maximum acceptable data loss
+  - Four AWS DR strategies: Backup & Restore, Pilot Light, Warm Standby, Multi-Site Active/Active
+  - AWS Backup – centralized backup management across EBS, EC2, RDS, DynamoDB, EFS, Storage Gateway
+
+Hands-on practice completed:
+- Created S3 buckets with versioning, lifecycle policies, static website hosting
+- Configured bucket policies, CORS, and VPC endpoints
+- Tested multipart upload and event triggers
+- Explored AWS Backup console and created backup plans

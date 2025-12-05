@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Week 11 Worklog"
 date: 2025-09-09
 weight: 2
@@ -54,4 +54,4 @@ pre: " <b> 1.11. </b> "
   * ...
 
 * Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* ... -->

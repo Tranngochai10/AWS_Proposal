@@ -5,122 +5,73 @@ weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Python 3.13 runtime hiện đã có sẵn trong AWS Lambda
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+bởi Julian Wood | vào ngày 14 THÁNG 11 2024 | trong Announcements, AWS Cloud Development Kit, AWS Lambda, AWS SDK for Python, AWS Serverless Application Model, Python, Serverless | Permalink | Share
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Bài viết này được viết bởi Julian Wood, Principal Developer Advocate, và Leandro Cavalcante Damascena, Senior Solutions Architect Engineer.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+AWS Lambda hiện đã hỗ trợ Python 3.13 như là một managed runtime và container base image. Python là một ngôn ngữ phổ biến để xây dựng các ứng dụng serverless. Bản phát hành Python 3.13 bao gồm một số thay đổi đối với ngôn ngữ, việc triển khai và thư viện chuẩn. Với bản phát hành này, các nhà phát triển Python giờ đây có thể tận dụng các tính năng và cải tiến mới này khi tạo các ứng dụng serverless trên Lambda. Python 3.13 cũng bao gồm hỗ trợ thử nghiệm cho một số tính năng, nhưng các tính năng này không có sẵn trong Lambda.
 
----
+Bạn có thể phát triển các Lambda functions trong Python 3.13 bằng cách sử dụng AWS Management Console, AWS Command Line Interface (AWS CLI), AWS SDK for Python (Boto3), AWS Serverless Application Model (AWS SAM), AWS Cloud Development Kit (AWS CDK), và các công cụ infrastructure as code khác.
 
-## Hướng dẫn kiến trúc
+Python 3.13 runtime cho phép bạn triển khai các serverless best practices bằng cách sử dụng Powertools for AWS Lambda (Python). Đây là một developer toolkit bao gồm observability, batch processing, AWS Systems Manager Parameter Store integration, idempotency, feature flags, Amazon CloudWatch Metrics, structured logging, và nhiều hơn nữa.
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Lambda@Edge cho phép bạn sử dụng Python 3.13 để tùy chỉnh nội dung độ trễ thấp được phân phối thông qua Amazon CloudFront.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+## Thay đổi Lambda runtime
 
-**Kiến trúc giải pháp bây giờ như sau:**
+### Amazon Linux 2023
+Giống như Python 3.12 runtime, Python 3.13 runtime được dựa trên provided.al2023 runtime, được xây dựng dựa trên Amazon Linux 2023 minimal container image. Amazon Linux 2023 minimal image sử dụng microdnf làm package manager, được symlink như dnf. Điều này thay thế yum package manager được sử dụng trong Python 3.11 và các AL2-based images trước đó. Nếu bạn deploy các Lambda functions của mình dưới dạng container images, bạn phải cập nhật Dockerfiles của mình để sử dụng dnf thay vì yum khi nâng cấp lên Python 3.13 base image từ Python 3.11 hoặc các base images trước đó.
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Tìm hiểu thêm về provided.al2023 runtime trong bài blog post Introducing the Amazon Linux 2023 runtime for AWS Lambda và Amazon Linux 2023 launch blog post.
 
----
+## Các tính năng Python mới
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+### Cải tiến Data model
+Có những cải tiến đối với Python data model. _static_attributes_ lưu trữ tên của các attributes được truy cập thông qua self.X trong bất kỳ function nào trong một class body.
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+### Thay đổi Typing
+Với việc triển khai PEP 702, bạn giờ đây có thể sử dụng decorator warnings.deprecated() mới để đánh dấu các deprecations trong type system và tại runtime.
 
----
+Python 3.13 cũng thêm PEP 696, giới thiệu các giá trị mặc định cho type parameters. Cải tiến này cho phép các nhà phát triển chỉ định các default types cho TypeVar, ParamSpec, và TypeVarTuple khi bỏ qua type arguments.
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+### Standard library
+Standard library bao gồm các cải tiến cho một exception PythonFinalizationError mới, được raised khi một operation bị chặn trong quá trình finalization.
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Các functions mới base64.z85encode() và base64.z85decode() hỗ trợ encoding và decoding Z85 data.
 
----
+Module copy giờ đây có một function copy.replace(), với hỗ trợ cho nhiều built-in types và bất kỳ class nào định nghĩa method _replace()_.
 
-## The pub/sub hub
+Module os có a suite of new functions để làm việc với các timer notification file descriptors của Linux.
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Có một thay đổi đối với các mutation semantics được định nghĩa cho locals().
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+## Các tính năng thử nghiệm không khả dụng
+Python 3.13 bao gồm một số tính năng thử nghiệm không được bật cho Lambda managed runtime hoặc base images. Các tính năng này phải được bật khi Python runtime được compile. Vì Lambda-provided Python 3.13 runtime được thiết kế cho production workloads, các tính năng này không được bật trong Lambda build của Python 3.13 và không thể được bật thông qua execution-time flag. Để sử dụng các tính năng này trong Lambda, bạn có thể deploy Python runtime của riêng mình bằng cách sử dụng custom runtime hoặc container image với các tính năng này được bật.
 
----
+### Free-threaded CPython
+Bạn không thể bật hỗ trợ thử nghiệm để chạy Python ở free-threaded mode, với global interpreter lock (GIL) bị vô hiệu hóa.
 
-## Core microservice
+### Just-in-time (JIT) compiler
+Bạn cũng không thể bật experimental JIT compiler trong Lambda managed runtime hoặc base image.
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+## Cân nhắc về Performance
+Khi ra mắt, các Lambda runtimes mới nhận được ít lượng sử dụng hơn so với các runtimes hiện có đã được thiết lập. Điều này có thể dẫn đến thời gian cold start dài hơn do giảm cache residency trong các sub-systems Lambda nội bộ. Thời gian cold start thường được cải thiện trong những tuần sau khi ra mắt khi lượng sử dụng tăng lên. Do đó, AWS khuyến nghị không rút ra kết luận từ các so sánh hiệu suất song song với các Lambda runtimes khác cho đến khi hiệu suất đã ổn định. Vì hiệu suất phụ thuộc rất nhiều vào workload, khách hàng có workloads nhạy cảm về hiệu suất nên tiến hành thử nghiệm của riêng họ, thay vì dựa vào các test benchmarks chung.
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+## Sử dụng Python 3.13 trong Lambda
 
----
+### AWS Management Console
+Để sử dụng Python 3.13 runtime để phát triển các Lambda functions của bạn, chỉ định giá trị runtime parameter là Python 3.13 khi tạo hoặc cập nhật một function. Phiên bản Python 3.13 có sẵn trong dropdown Runtime trong trang Create Function.
 
-## Front door microservice
+Để cập nhật một Lambda function hiện có lên Python 3.13, điều hướng đến function trong Lambda console và chọn Edit trong panel Runtime settings. Phiên bản Python mới có sẵn trong dropdown Runtime.
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+Bạn có thể cần kiểm tra code và dependencies của mình để đảm bảo tương thích với Python 3.13, và cập nhật khi cần thiết.
 
----
+### AWS Lambda container image
+Thay đổi phiên bản Python base image bằng cách sửa đổi câu lệnh FROM trong Dockerfile của bạn.
 
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+```dockerfile
+FROM public.ecr.aws/lambda/python:3.13
+# Copy function code
+COPY lambda_handler.py ${LAMBDA_TASK_ROOT}

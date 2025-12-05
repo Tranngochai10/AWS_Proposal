@@ -5,122 +5,94 @@ weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+# Python 3.13 runtime is now available in AWS Lambda
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+by Julian Wood | on 14 NOV 2024 | in Announcements, AWS Cloud Development Kit, AWS Lambda, AWS SDK for Python, AWS Serverless Application Model, Python, Serverless | Permalink | Share
 
----
+This post is written by Julian Wood, Principal Developer Advocate, and Leandro Cavalcante Damascena, Senior Solutions Architect Engineer.
 
-## Architecture Guidance
+AWS Lambda now supports Python 3.13 as a managed runtime and container base image. Python is a popular language for building serverless applications. The Python 3.13 release includes a number of changes to the language, implementation, and standard library. With this release, Python developers can now take advantage of these new features and improvements when creating serverless applications on Lambda. Python 3.13 also includes experimental support for some features, but these features are not available in Lambda.
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+You can develop Lambda functions in Python 3.13 using the AWS Management Console, AWS Command Line Interface (AWS CLI), AWS SDK for Python (Boto3), AWS Serverless Application Model (AWS SAM), AWS Cloud Development Kit (AWS CDK), and other infrastructure as code tools.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+The Python 3.13 runtime allows you to implement serverless best practices using Powertools for AWS Lambda (Python). This is a developer toolkit that includes observability, batch processing, AWS Systems Manager Parameter Store integration, idempotency, feature flags, Amazon CloudWatch Metrics, structured logging, and more.
 
-**The solution architecture is now as follows:**
+Lambda@Edge allows you to use Python 3.13 to customize low-latency content delivered through Amazon CloudFront.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+## Lambda runtime changes
 
----
+### Amazon Linux 2023
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+Like the Python 3.12 runtime, the Python 3.13 runtime is based on the provided.al2023 runtime, which is built on the Amazon Linux 2023 minimal container image. The Amazon Linux 2023 minimal image uses microdnf as the package manager, which is symlinked as dnf. This replaces the yum package manager used in Python 3.11 and earlier AL2-based images.
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+If you deploy your Lambda functions as container images, you must update your Dockerfiles to use dnf instead of yum when upgrading to the Python 3.13 base image from Python 3.11 or earlier base images.
 
----
+Learn more about the provided.al2023 runtime in the blog post Introducing the Amazon Linux 2023 runtime for AWS Lambda and the Amazon Linux 2023 launch blog post.
 
-## Technology Choices and Communication Scope
+## New Python features
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+### Data model improvements
 
----
+There are improvements to the Python data model. _static_attributes_ stores the names of attributes accessed through self.X in any function in a class body.
 
-## The Pub/Sub Hub
+### Typing changes
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+With the implementation of PEP 702, you can now use the new warnings.deprecated() decorator to mark deprecations in the type system and at runtime.
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+Python 3.13 also adds PEP 696, which introduces default values for type parameters. This improvement allows developers to specify default types for TypeVar, ParamSpec, and TypeVarTuple when omitting type arguments.
 
----
+### Standard library
 
-## Core Microservice
+The standard library includes improvements for a new PythonFinalizationError exception, which is raised when an operation is blocked during finalization.
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+New functions base64.z85encode() and base64.z85decode() support encoding and decoding Z85 data.
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+The copy module now has a copy.replace() function, with support for many built-in types and any class that defines the _replace()_ method.
 
----
+The os module has a suite of new functions for working with Linux timer notification file descriptors.
 
-## Front Door Microservice
+There is a change to the mutation semantics defined for locals().
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+## Unavailable experimental features
 
----
+Python 3.13 includes some experimental features that are not enabled for Lambda managed runtime or base images. These features must be enabled when the Python runtime is compiled. Because the Lambda-provided Python 3.13 runtime is designed for production workloads, these features are not enabled in Lambda's build of Python 3.13 and cannot be enabled through execution-time flags.
 
-## Staging ER7 Microservice
+To use these features in Lambda, you can deploy your own Python runtime using a custom runtime or container image with these features enabled.
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+### Free-threaded CPython
 
----
+You cannot enable experimental support to run Python in free-threaded mode, with the global interpreter lock (GIL) disabled.
 
-## New Features in the Solution
+### Just-in-time (JIT) compiler
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+You also cannot enable the experimental JIT compiler in Lambda managed runtime or base image.
+
+## Performance considerations
+
+At launch, new Lambda runtimes receive less usage compared to existing established runtimes. This can lead to longer cold start times due to reduced cache residency in internal Lambda sub-systems. Cold start times are typically improved in the weeks following launch as usage increases.
+
+Therefore, AWS recommends not drawing conclusions from performance comparisons side-by-side with other Lambda runtimes until performance has stabilized. Since performance depends heavily on the workload, customers with performance-sensitive workloads should conduct their own testing, rather than relying on general benchmark tests.
+
+## Using Python 3.13 in Lambda
+
+### AWS Management Console
+
+To use the Python 3.13 runtime to develop your Lambda functions, specify the runtime parameter value as Python 3.13 when creating or updating a function.
+
+Python version 3.13 is available in the Runtime dropdown on the Create Function page.
+
+To update an existing Lambda function to Python 3.13, navigate to the function in the Lambda console and select Edit in the Runtime settings panel. The new Python version is available in the Runtime dropdown.
+
+You may need to check your code and dependencies to ensure compatibility with Python 3.13, and update as necessary.
+
+### AWS Lambda container image
+
+Change the Python base image version by modifying the FROM statement in your Dockerfile.
+
+```dockerfile
+FROM public.ecr.aws/lambda/python:3.13
+# Copy function code
+COPY lambda_handler.py ${LAMBDA_TASK_ROOT}
+```

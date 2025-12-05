@@ -29,9 +29,9 @@ chapter: false
 
 &emsp; **Internship Position:** FCJ Cloud Intern
 
-&emsp; **Internship Duration:** From 12/08/2025 to 12/11/2025
+&emsp; **Internship Duration:** From 12/08/2025 to 9/12/2025
 
-![Your profile picture](https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-1/341128599_549182920623736_5160836108154107558_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=103&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Z4ZVvncHnZsQ7kNvwHbPYeE&_nc_oc=Adl6U1QZHtExihmI1LDDIU6k3yBqCNErqLNFSGVWkJ41HgDxH6VwAx0jHC7T7_skstQ&_nc_zt=24&_nc_ht=scontent.fsgn5-12.fna&_nc_gid=qyPzJypxBzPIm07SrJefHQ&oh=00_AfZNoVZOtEkMDnadPMx5wU6L2scMGu6AwadyeCZtPgUN3A&oe=68C589BB)
+![Ảnh đại diện của bạn](/images/avatar.jpg)
 
 ### Report Content
 

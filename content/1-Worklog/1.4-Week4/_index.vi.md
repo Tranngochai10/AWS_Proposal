@@ -5,55 +5,55 @@ weight: 1
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+### Week 4 Objectives:
+- Nắm vững Amazon Simple Storage Service (S3) và toàn bộ hệ sinh thái liên quan
+- Hiểu rõ khái niệm object storage, các lớp lưu trữ, quản lý vòng đời, bảo mật và tối ưu hiệu năng
+- Tìm hiểu AWS Snow Family, Storage Gateway và các khái niệm Disaster Recovery
 
+### Tasks to be carried out this week:
+| Day | Task                                                                                                                                                                                                                   | Start Date   | Completion Date | Reference Material                        |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1–2 | Tìm hiểu sâu Amazon S3: kiến trúc, độ bền, storage class, lifecycle, versioning, static website, CORS, bucket policy, ACL, Access Point, VPC endpoint                                                                   | 18–19/08/2025| 19/08/2025      | https://cloudjourney.awsstudygroup.com/      |
+| 3   | Tối ưu hiệu năng S3, multipart upload, thiết kế prefix, event notification, replication (CRR/SRR)                                                                                                                      | 20/08/2025   | 20/08/2025      |                                           |
+| 4   | Amazon S3 Glacier (Instant Retrieval, Flexible Retrieval, Deep Archive) và các tùy chọn retrieve (Expedited, Standard, Bulk)                                                                                            | 21/08/2025   | 21/08/2025      |                                           |
+| 5   | AWS Snow Family (Snowball, Snowball Edge, Snowmobile) và AWS Storage Gateway (File, Volume, Tape)                                                                                                                      | 22/08/2025   | 22/08/2025      |                                           |
+| 6   | Khái niệm Disaster Recovery (RTO/RPO), 4 chiến lược DR trên AWS, dịch vụ AWS Backup                                                                                                                                   | 23/08/2025   | 23/08/2025      |                                           |
 
-### Mục tiêu tuần 4:
+### Week 4 Achievements:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+Hoàn thành 100 % kế hoạch tuần 4 với các nội dung nổi bật sau:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+- Hiểu rõ bản chất **Amazon S3** là kho lưu trữ dạng object (không phải block/file), mô hình write-once-read-many, dung lượng không giới hạn, mỗi object tối đa 5 TB, dữ liệu tự động nhân bản trên ít nhất 3 AZ trong region.
+- Đạt độ bền 99.999999999 % (11×9s) và độ sẵn sàng 99.99 %.
+- Thành thạo các lớp lưu trữ S3:
+  - S3 Standard, Standard-IA, One Zone-IA, Intelligent-Tiering
+  - Glacier Instant Retrieval, Flexible Retrieval, Deep Archive
+- Biết sử dụng **Lifecycle Policy** để tự động chuyển lớp hoặc hết hạn object theo ngày.
+- Nắm vững các tính năng nâng cao:
+  - Versioning (chống xóa nhầm, chống ransomware)
+  - Static website hosting (phù hợp SPA – React, Angular…)
+  - CORS configuration
+  - Event notifications, multipart upload
+  - S3 Access Points, VPC Endpoint (truy cập private)
+- Kiểm soát truy cập: Bucket Policy + IAM Policy (ưu tiên dùng), S3 ACL (legacy), Block Public Access.
+- Tối ưu hiệu năng S3 bằng cách dùng random prefix để phân bố object đều trên nhiều partition.
+- Hiểu rõ **Amazon S3 Glacier**:
+  - Chi phí cực thấp cho dữ liệu lưu trữ dài hạn
+  - 3 tùy chọn retrieve: Expedited (1–5 phút), Standard (3–5 giờ), Bulk (5–12 giờ)
+- Nắm vững **AWS Snow Family**:
+  - Snowball ~80 TB, Snowball Edge ~100 TB + có compute, Snowmobile tới 100 PB/thùng container
+- Thành thạo **AWS Storage Gateway** – giải pháp hybrid:
+  - File Gateway → S3 (NFS/SMB)
+  - Volume Gateway → S3 (iSCSI) → snapshot thành EBS
+  - Tape Gateway → Virtual Tape Library (S3/Glacier)
+- Nắm chắc khái niệm Disaster Recovery:
+  - RTO (thời gian phục hồi tối đa chấp nhận được)
+  - RPO (mức mất dữ liệu tối đa chấp nhận được)
+  - 4 chiến lược DR trên AWS: Backup & Restore → Pilot Light → Warm Standby → Multi-Site Active/Active
+  - AWS Backup: quản lý tập trung backup cho EC2, EBS, RDS, DynamoDB, EFS, Storage Gateway…
 
-
-### Kết quả đạt được tuần 4:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+Thực hành thành công:
+- Tạo bucket + bật versioning + lifecycle + static website
+- Cấu hình bucket policy, CORS, VPC endpoint
+- Thử multipart upload và event trigger
+- Khám phá giao diện AWS Backup

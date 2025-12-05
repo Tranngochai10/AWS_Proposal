@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Blog 5"
 date: 2025-09-09
 weight: 1
@@ -124,4 +124,4 @@ Outputs:
   CatalogArn:
     Value: !GetAtt Catalog.Arn
     Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+      Name: !Sub ${AWS::StackName}-CatalogArn -->

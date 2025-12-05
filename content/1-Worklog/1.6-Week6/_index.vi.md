@@ -5,54 +5,56 @@ weight: 1
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+### Week 6 Objectives:
+- Nắm vững khái niệm cơ bản và nâng cao về cơ sở dữ liệu
+- Phân biệt rõ OLTP vs OLAP, RDBMS vs NoSQL
+- Thành thạo toàn bộ dịch vụ cơ sở dữ liệu quan trọng trên AWS: RDS, Aurora, Redshift, ElastiCache
 
+### Tasks to be carried out this week:
+| Day | Task                                                                                                             | Start Date   | Completion Date | Reference Material                        |
+| --- | ---------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1–2 | Khái niệm CSDL: Session, Primary Key, Foreign Key, Index, Partition, Execution Plan, Buffer, DB Log              | 01–02/09/2025| 02/09/2025      | https://cloudjourney.awsstudygroup.com/   |
+| 3   | RDBMS vs NoSQL, OLTP vs OLAP                                                                                     | 03/09/2025   | 03/09/2025      |                                           |
+| 4   | Amazon RDS + Aurora (MySQL & PostgreSQL compatible)                                                              | 04/09/2025   | 04/09/2025      |                                           |
+| 5   | Amazon Redshift – Data Warehouse & OLAP                                                                          | 05/09/2025   | 05/09/2025      |                                           |
+| 6   | Amazon ElastiCache (Redis & Memcached)                                                                          | 06/09/2025   | 06/09/2025      |                                           |
 
-### Mục tiêu tuần 6:
+### Week 6 Achievements:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+Hoàn thành xuất sắc 100 % nội dung tuần 6 với các kiến thức cốt lõi sau:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+- Hiểu sâu các khái niệm nền tảng CSDL:
+  - Primary Key / Foreign Key / Index / Partition / Execution Plan / Buffer / DB Log
+  - Session, OLTP (giao dịch nhanh, nhiều read-write nhỏ), OLAP (phân tích phức tạp trên dữ liệu lịch sử lớn)
+  - RDBMS (bảng, quan hệ, SQL) vs NoSQL (document, key-value, column-family, graph)
 
+- Thành thạo **Amazon RDS** (Managed Relational Database Service):
+  - Hỗ trợ MySQL, PostgreSQL, MariaDB, Oracle, SQL Server, và Aurora
+  - Tự động backup (database + log, max 35 ngày), Read Replica, Multi-AZ failover
+  - Storage auto-scaling, mã hóa at rest & in transit, bảo vệ bằng Security Group
+  - Phù hợp nhất cho workload OLTP
 
-### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Làm chủ **Amazon Aurora**:
+  - Engine tương thích MySQL & PostgreSQL nhưng tối ưu storage layer cho hiệu năng đọc/ghi song song cực cao
+  - Tính năng nổi bật: Backtrack, Aurora Clone, Global Database, Multi-Master
+  - Vẫn nằm trong RDS → thừa hưởng tất cả tính năng quản lý của RDS
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+- Hiệu năng vượt trội so với RDS thông thường
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+- Hiểu rõ **Amazon Redshift**:
+  - Data warehouse được quản lý hoàn toàn, tối ưu cho OLAP
+  - Kiến trúc MPP (Massively Parallel Processing) + columnar storage
+  - Leader Node điều phối, Compute Nodes lưu trữ + xử lý song song
+  - Hỗ trợ JDBC/ODBC, Redshift Spectrum, transient cluster để tiết kiệm chi phí
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+- Thành thạo **Amazon ElastiCache**:
+  - Managed in-memory cache hỗ trợ Redis và Memcached
+  - Tự động thay thế node lỗi, Multi-AZ
+  - Đặt trước tầng database để giảm tải OLTP
+  - Ưu tiên dùng Redis cho ứng dụng mới (tính năng phong phú hơn)
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+Thực hành thành công:
+- Tạo RDS MySQL + Read Replica + Multi-AZ
+- Tạo Aurora cluster + Global Database demo
+- Tạo Redshift cluster + chạy query OLAP
+- Tạo ElastiCache Redis cluster và tích hợp với ứng dụng mẫu

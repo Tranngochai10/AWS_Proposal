@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Worklog Tuần 10"
 date: 2025-09-09
 weight: 2
@@ -56,4 +56,4 @@ pre: " <b> 1.10. </b> "
 * Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
 * ...
 
-
+ -->
