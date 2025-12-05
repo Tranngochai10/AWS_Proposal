@@ -7,7 +7,6 @@ pre: " <b> 7. </b> "
 ---
 # Chia sẻ và phản hồi
 
-### Đánh giá tổng quan
 
 **1. Môi trường làm việc**  
 Môi trường làm việc tại **First Cloud Journey (FCJ)** rất năng động và truyền cảm hứng.  

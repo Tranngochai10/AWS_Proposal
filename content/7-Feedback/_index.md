@@ -8,7 +8,6 @@ pre: " <b> 7. </b> "
 
 # Sharing and Feedback
 
-### Overall Evaluation
 
 **1. Working Environment**  
 The working environment at **First Cloud Journey (FCJ)** is very dynamic and inspiring.  
