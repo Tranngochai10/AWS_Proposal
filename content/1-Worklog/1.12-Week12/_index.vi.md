@@ -1,58 +1,130 @@
-<!-- ---
+---
 title: "Worklog Tuần 12"
 date: 2025-09-09
-weight: 2
+weight: 12
 chapter: false
-pre: " <b> 1.12 </b> "
+pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
 ### Mục tiêu tuần 12:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Hoàn thiện Manager Dashboard với Reports và Analytics
+* Tối ưu hóa performance và UX
+* Testing toàn diện và fix bugs
+* Chuẩn bị demo và documentation
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc                                                                                                                                    | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1   | - Xây dựng Reports & Analytics module <br> - Tạo các dashboard charts: headcount, turnover rate, attendance trends                        | 20/10/2025   | 20/10/2025      |                                          |
+| 2   | - Implement custom report builder <br> - Cho phép Manager tạo reports tùy chỉnh với filters và date ranges                             | 21/10/2025   | 21/10/2025      |                                          |
+| 3   | - Tối ưu hóa performance: lazy loading, code splitting, caching <br> - Optimize API calls và reduce bundle size                         | 22/10/2025   | 22/10/2025      |                                          |
+| 4   | - Comprehensive testing: unit tests, integration tests, E2E tests <br> - Cross-browser testing và mobile device testing                   | 23/10/2025   | 23/10/2025      |                                          |
+| 5   | - Fix bugs và cải thiện UX dựa trên feedback <br> - Accessibility improvements và keyboard navigation                                     | 24/10/2025   | 24/10/2025      |                                          |
+| 6   | - Chuẩn bị demo presentation <br> - Viết documentation: user guide, technical docs, API integration guide                               | 25/10/2025   | 25/10/2025      |                                          |
 
 ### Kết quả đạt được tuần 12:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Hoàn thành Reports & Analytics module:
+  * **Dashboard Charts:**
+    * Headcount chart theo department và thời gian
+    * Turnover rate với trend analysis
+    * Attendance trends (daily, weekly, monthly)
+    * Leave utilization rate
+    * Overtime hours distribution
+    * Performance metrics overview
+  * **Interactive Charts:**
+    * Click để drill-down vào details
+    * Hover tooltips với detailed information
+    * Zoom và pan functionality
+    * Export charts as images
+  * **Custom Report Builder:**
+    * Drag-and-drop report designer
+    * Select data fields, filters, date ranges
+    * Choose chart types (bar, line, pie, table)
+    * Save và share reports
+    * Schedule automated report generation
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Performance Optimization:
+  * **Code Optimization:**
+    * Lazy loading cho routes và components
+    * Code splitting với dynamic imports
+    * Tree shaking để giảm bundle size
+    * Memoization cho expensive calculations
+  * **API Optimization:**
+    * Request caching với React Query/SWR
+    * Debouncing cho search inputs
+    * Pagination và infinite scroll
+    * Optimistic updates cho better UX
+  * **Bundle Size Reduction:**
+    * Bundle analysis và optimization
+    * Remove unused dependencies
+    * Compress images và assets
+    * Gzip compression cho production
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Comprehensive Testing:
+  * **Unit Tests:**
+    * Component testing với React Testing Library
+    * Utility functions testing
+    * Coverage > 80%
+  * **Integration Tests:**
+    * API integration testing
+    * Authentication flow testing
+    * CRUD operations testing
+  * **E2E Tests:**
+    * Critical user flows với Cypress/Playwright
+    * Login flow, Employee management, Leave approval
+  * **Cross-browser Testing:**
+    * Chrome, Firefox, Safari, Edge
+    * Mobile browsers (iOS Safari, Chrome Mobile)
+  * **Device Testing:**
+    * Desktop (1920x1080, 1366x768)
+    * Tablet (iPad, Android tablets)
+    * Mobile (iPhone, Android phones)
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Bug Fixes và UX Improvements:
+  * Fixed 50+ bugs từ testing phase
+  * Improved error messages và user feedback
+  * Enhanced loading states và skeletons
+  * Better form validation messages
+  * Improved accessibility:
+    * ARIA labels cho screen readers
+    * Keyboard navigation support
+    * Focus management
+    * Color contrast improvements
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+* Documentation:
+  * **User Guide:**
+    * Step-by-step guides cho các features
+    * Screenshots và annotations
+    * FAQ section
+  * **Technical Documentation:**
+    * Architecture overview
+    * Component library documentation
+    * API integration guide
+    * Deployment guide
+  * **Demo Preparation:**
+    * Demo script với key features
+    * Sample data setup
+    * Presentation slides
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
- -->
+* Project Summary:
+  * **Completed Features:**
+    * ✅ Employee Login page với SSO và MFA
+    * ✅ Manager Dashboard với navigation
+    * ✅ Employee Management module
+    * ✅ Leave Request và Approval workflow
+    * ✅ Attendance tracking và reports
+    * ✅ Reports & Analytics với custom report builder
+  * **Technologies Used:**
+    * Frontend framework (React/Vue/Angular)
+    * UI component library
+    * State management
+    * Routing và authentication
+    * Chart libraries cho analytics
+  * **Key Learnings:**
+    * RBAC implementation best practices
+    * Complex form handling và validation
+    * Performance optimization techniques
+    * Testing strategies cho large applications
+    * UX design cho enterprise applications

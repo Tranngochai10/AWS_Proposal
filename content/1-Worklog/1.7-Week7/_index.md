@@ -1,57 +1,62 @@
-<!-- ---
+---
 title: "Week 7 Worklog"
 date: 2025-09-09
-weight: 1
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 7 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Start Employee Management Web Project - Analyze requirements and design system
+* Research RBAC (Role-Based Access Control) architecture and Authentication
+* Set up frontend development environment
+* Create ideas and wireframes for Employee Login page
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task                                                                                                                                    | Start Date | Completion Date | Reference Material                        |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | ----------------------------------------- |
+| 1   | - Analyze Employee Management Web Project requirements <br> - Research features: RBAC, Auth, Employee Profile, Payroll, Attendance     | 15/09/2025 | 15/09/2025      |                                          |
+| 2   | - Research RBAC architecture and roles: Admin HR, Manager, Employee, Payroll officer, Recruiter <br> - Learn about MFA (2FA OTP/Authenticator) | 16/09/2025 | 16/09/2025      |                                          |
+| 3   | - Set up frontend development environment (React/Vue/Angular) <br> - Install necessary libraries: UI framework, routing, state management | 17/09/2025 | 17/09/2025      |                                          |
+| 4   | - Design wireframe and UI/UX for Employee Login page <br> - Identify login methods: email/phone/SSO (Google, Microsoft) | 18/09/2025 | 18/09/2025      |                                          |
+| 5   | - Create detailed plan for Employee Login page <br> - Identify required components: LoginForm, SSO buttons, MFA input, Forgot password | 19/09/2025 | 19/09/2025      |                                          |
+| 6   | - Review and finalize design <br> - Prepare resources: icons, images, color scheme for login page                                    | 20/09/2025 | 20/09/2025      |                                          |
 
 ### Week 7 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Analyzed and understood Employee Management Web Project requirements with main modules:
+  * **RBAC + Auth:** Login via email/phone/SSO, role management, MFA, Session management
+  * **Employee Profile:** Employee profile management, contracts, insurance, tax
+  * **Attendance & Time Tracking:** Time tracking, leave management
+  * **Payroll:** Salary calculation, payslips, reports
+  * **Scheduling & Leave:** Scheduling, leave requests
+  * **Recruitment/ATS:** Recruitment, candidate management
+  * **Training & Performance:** Training, performance evaluation
+  * **Reports & Dashboard:** Reports and dashboard for HR & CEO
 
-* Successfully created and configured an AWS Free Tier account.
+* Mastered RBAC architecture with roles:
+  * **Admin HR:** Full system management rights
+  * **Manager:** Manage employees in department
+  * **Employee:** Regular employee
+  * **Payroll officer:** Salary management
+  * **Recruiter:** Recruitment
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* Successfully set up frontend development environment:
+  * Installed framework and necessary dependencies
+  * Configured routing and state management
+  * Set up project folder structure
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+* Completed wireframe and UI/UX design for Employee Login page:
+  * Login interface with email/phone
+  * SSO integration (Google, Microsoft)
+  * MFA/2FA input form
+  * "Forgot password" link
+  * Responsive design for mobile and desktop
 
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ... -->
+* Identified components to develop:
+  * LoginForm component
+  * SSO authentication buttons
+  * MFA/OTP input component
+  * Forgot password modal
+  * Session management logic

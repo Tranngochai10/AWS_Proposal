@@ -1,59 +1,63 @@
-<!-- ---
+---
 title: "Worklog Tuần 8"
 date: 2025-09-09
-weight: 1
+weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 8:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Phát triển trang Employee Login - Xây dựng UI components
+* Implement form validation và error handling
+* Tích hợp SSO authentication (Google, Microsoft)
+* Xây dựng logic xử lý MFA/2FA
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc                                                                                                                                    | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1   | - Xây dựng LoginForm component với các trường: email/phone, password <br> - Implement form validation (email format, password strength) | 22/09/2025   | 22/09/2025      |                                          |
+| 2   | - Tạo UI cho SSO buttons (Google, Microsoft) <br> - Styling và responsive design cho login page                                            | 23/09/2025   | 23/09/2025      |                                          |
+| 3   | - Implement error handling và hiển thị thông báo lỗi <br> - Xây dựng loading states và disabled states cho buttons                      | 24/09/2025   | 24/09/2025      |                                          |
+| 4   | - Tạo MFA/OTP input component <br> - Implement logic xử lý OTP verification                                                             | 25/09/2025   | 25/09/2025      |                                          |
+| 5   | - Xây dựng Forgot password modal/form <br> - Implement "Remember me" checkbox và session management                                       | 26/09/2025   | 26/09/2025      |                                          |
+| 6   | - Testing và fix bugs <br> - Tối ưu hóa UI/UX, cải thiện accessibility                                                                   | 27/09/2025   | 27/09/2025      |                                          |
 
 ### Kết quả đạt được tuần 8:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Đã hoàn thành xây dựng LoginForm component với đầy đủ tính năng:
+  * Input fields cho email/phone và password
+  * Form validation với real-time feedback
+  * Password visibility toggle
+  * Responsive design cho mobile và desktop
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Tích hợp thành công SSO authentication:
+  * Google Sign-In button với OAuth flow
+  * Microsoft Sign-In button với Azure AD integration
+  * Xử lý callback và token management
+  * Error handling cho các trường hợp SSO failure
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Hoàn thành MFA/OTP component:
+  * OTP input với 6 digits
+  * Auto-focus và paste support
+  * Resend OTP functionality
+  * Countdown timer cho resend
+  * Integration với backend API
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Xây dựng Forgot password flow:
+  * Modal/form để nhập email/phone
+  * Reset password link gửi qua email
+  * Success/error messages
+  * Navigation flow hoàn chỉnh
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+* Implement session management:
+  * "Remember me" checkbox functionality
+  * Token storage (localStorage/sessionStorage)
+  * Auto-logout khi session hết hạn
+  * Device management tracking
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
- -->
+* Testing và optimization:
+  * Unit tests cho các components
+  * Integration tests cho authentication flow
+  * Cross-browser compatibility testing
+  * Accessibility improvements (ARIA labels, keyboard navigation)

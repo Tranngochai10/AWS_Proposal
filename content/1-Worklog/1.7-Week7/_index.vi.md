@@ -1,59 +1,62 @@
-<!-- ---
+---
 title: "Worklog Tuần 7"
 date: 2025-09-09
-weight: 1
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 7:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Bắt đầu dự án Web Quản lý Nhân viên - Phân tích yêu cầu và thiết kế hệ thống
+* Nghiên cứu kiến trúc RBAC (Role-Based Access Control) và Authentication
+* Thiết lập môi trường phát triển frontend
+* Lên ý tưởng và wireframe cho trang Employee Login
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc                                                                                                                                    | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1   | - Phân tích yêu cầu dự án Web Quản lý Nhân viên <br> - Nghiên cứu các tính năng: RBAC, Auth, Employee Profile, Payroll, Attendance         | 15/09/2025   | 15/09/2025      |                                          |
+| 2   | - Nghiên cứu kiến trúc RBAC và các role: Admin HR, Manager, Employee, Payroll officer, Recruiter <br> - Tìm hiểu về MFA (2FA OTP/Authenticator) | 16/09/2025   | 16/09/2025      |                                          |
+| 3   | - Thiết lập môi trường phát triển frontend (React/Vue/Angular) <br> - Cài đặt các thư viện cần thiết: UI framework, routing, state management | 17/09/2025   | 17/09/2025      |                                          |
+| 4   | - Thiết kế wireframe và UI/UX cho trang Employee Login <br> - Xác định các phương thức đăng nhập: email/phone/SSO (Google, Microsoft) | 18/09/2025   | 18/09/2025      |                                          |
+| 5   | - Lên kế hoạch chi tiết cho trang Employee Login <br> - Xác định các component cần thiết: LoginForm, SSO buttons, MFA input, Forgot password | 19/09/2025   | 19/09/2025      |                                          |
+| 6   | - Review và hoàn thiện thiết kế <br> - Chuẩn bị tài nguyên: icons, images, color scheme cho login page                                    | 20/09/2025   | 20/09/2025      |                                          |
 
 ### Kết quả đạt được tuần 7:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Đã phân tích và hiểu rõ yêu cầu của dự án Web Quản lý Nhân viên với các module chính:
+  * **RBAC + Auth:** Login bằng email/phone/SSO, quản lý roles, MFA, Session management
+  * **Employee Profile:** Quản lý hồ sơ nhân viên, hợp đồng, bảo hiểm, thuế
+  * **Attendance & Time Tracking:** Chấm công, quản lý nghỉ phép
+  * **Payroll:** Tính lương, phiếu lương, báo cáo
+  * **Scheduling & Leave:** Lịch trình, đăng ký nghỉ phép
+  * **Recruitment/ATS:** Tuyển dụng, quản lý ứng viên
+  * **Training & Performance:** Đào tạo, đánh giá hiệu suất
+  * **Reports & Dashboard:** Báo cáo và dashboard cho HR & CEO
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Nắm vững kiến trúc RBAC với các role:
+  * **Admin HR:** Toàn quyền quản lý hệ thống
+  * **Manager:** Quản lý nhân viên trong phòng ban
+  * **Employee:** Nhân viên thông thường
+  * **Payroll officer:** Quản lý lương thưởng
+  * **Recruiter:** Tuyển dụng
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Đã thiết lập môi trường phát triển frontend thành công:
+  * Cài đặt framework và các dependencies cần thiết
+  * Cấu hình routing và state management
+  * Thiết lập cấu trúc thư mục dự án
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Hoàn thành thiết kế wireframe và UI/UX cho trang Employee Login:
+  * Giao diện đăng nhập với email/phone
+  * Tích hợp SSO (Google, Microsoft)
+  * Form nhập MFA/2FA
+  * Link "Quên mật khẩu"
+  * Responsive design cho mobile và desktop
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
- -->
+* Xác định được các component cần phát triển:
+  * LoginForm component
+  * SSO authentication buttons
+  * MFA/OTP input component
+  * Forgot password modal
+  * Session management logic

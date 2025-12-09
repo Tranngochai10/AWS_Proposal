@@ -1,59 +1,102 @@
-<!-- ---
+---
 title: "Worklog Tuần 11"
 date: 2025-09-09
-weight: 2
+weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 11:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Phát triển module Quản lý Nghỉ phép và Phê duyệt trong Manager page
+* Xây dựng Leave Request management
+* Implement Approval workflow
+* Tạo Attendance tracking và reports cho Manager
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc                                                                                                                                    | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1   | - Xây dựng Leave Request List với filters <br> - Implement status badges: Pending, Approved, Rejected, Cancelled                        | 13/10/2025   | 13/10/2025      |                                          |
+| 2   | - Tạo Leave Request Detail modal/page <br> - Hiển thị thông tin: employee, dates, reason, attachments, approval workflow                 | 14/10/2025   | 14/10/2025      |                                          |
+| 3   | - Implement Approval actions: Approve, Reject, Request more info <br> - Xây dựng approval comments và notifications                      | 15/10/2025   | 15/10/2025      |                                          |
+| 4   | - Xây dựng Attendance Overview cho team <br> - Calendar view để xem attendance của nhân viên                                             | 16/10/2025   | 16/10/2025      |                                          |
+| 5   | - Tạo Attendance Reports: daily, weekly, monthly <br> - Export reports ra Excel/PDF                                                        | 17/10/2025   | 17/10/2025      |                                          |
+| 6   | - Testing Leave và Attendance modules <br> - Fix bugs và cải thiện UX                                                                   | 18/10/2025   | 18/10/2025      |                                          |
 
 ### Kết quả đạt được tuần 11:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Hoàn thành Leave Request Management:
+  * **Leave Request List:**
+    * Table view với columns: Employee, Leave Type, Dates, Duration, Status, Submitted Date
+    * Status badges với color coding (Pending=yellow, Approved=green, Rejected=red)
+    * Quick filters: My Team, Pending Approval, This Month, This Year
+    * Sort by date, employee, status
+    * Bulk approve/reject functionality
+  * **Leave Request Detail:**
+    * Employee information card
+    * Leave details: type, start/end date, duration, reason
+    * Attachments viewer (medical certificates, documents)
+    * Approval workflow visualization (current step, approvers)
+    * Comments/notes section
+    * Action buttons: Approve, Reject, Request Info, View History
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Implement Approval Workflow:
+  * **Approval Actions:**
+    * Approve với optional comments
+    * Reject với required reason
+    * Request more information
+    * Delegate approval (nếu có quyền)
+  * **Workflow Visualization:**
+    * Step-by-step approval process
+    * Current approver highlighting
+    * Timeline view của approval history
+    * Email notifications cho mỗi step
+  * **Comments System:**
+    * Threaded comments
+    * @mention support
+    * File attachments trong comments
+    * Comment history với timestamps
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Xây dựng Attendance Overview:
+  * **Team Calendar View:**
+    * Monthly calendar với color coding
+    * Legend: Present, Absent, On Leave, Holiday
+    * Click vào date để xem detail
+    * Filter by employee hoặc department
+  * **Attendance Statistics:**
+    * Present rate, Absent rate, Late arrivals
+    * Overtime hours summary
+    * Top performers và attendance issues
+  * **Quick Actions:**
+    * Mark attendance manually (nếu có quyền)
+    * Add notes cho attendance records
+    * Export attendance data
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Tạo Attendance Reports:
+  * **Report Types:**
+    * Daily report: attendance của ngày
+    * Weekly report: tổng hợp tuần
+    * Monthly report: báo cáo tháng với charts
+    * Custom date range report
+  * **Report Features:**
+    * Filter by department, employee, date range
+    * Group by department hoặc employee
+    * Charts và graphs (bar, line, pie)
+    * Summary statistics
+  * **Export Functionality:**
+    * Export to Excel với formatting
+    * Export to PDF với charts
+    * Email report functionality
+    * Schedule automated reports
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+* Implement Notifications:
+  * Real-time notifications cho new leave requests
+  * Email notifications cho approvals/rejections
+  * In-app notification center
+  * Notification preferences settings
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
- -->
+* Testing và optimization:
+  * Unit tests cho approval workflow
+  * Integration tests cho leave management
+  * Performance testing với large datasets
+  * User acceptance testing với Manager users
